@@ -81,7 +81,7 @@ const Hero = () => {
       >
         <div className="flex flex-col items-center animate-pulse">
           <FaArrowDown className="text-white/50 text-2xl" />
-          <span className="text-sm mt-2 text-white/50">Scroll down</span>
+          {/* <span className="text-sm mt-2 text-white/50">Scroll down</span> */}
         </div>
       </motion.div>
 
