@@ -19,7 +19,7 @@ const Hero = () => {
 
   return (
     <section className="relative w-full h-screen overflow-hidden text-white bg-transparent">
-      <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col md:flex-row items-center justify-center px-6 gap-10">
+      <div className="relative z-10 max-w-7xl mt-10 mx-auto h-full flex flex-col md:flex-row items-center justify-center px-6 gap-10">
         
         {/* Text Content */}
         <motion.div
