@@ -8,7 +8,7 @@ import { textVariant, fadeIn } from "../utils/motion";
 const ServiceCard = ({ title, icon, index, activeIndex }) => {
   const total = services.length;
   const angle = (index - activeIndex) * (360 / total);
-  const distance = 150; // pixels - adjust this to change the radius of the circle
+  const distance = 120; // pixels - adjust this to change the radius of the circle
 
   return (
     <motion.div
@@ -27,7 +27,7 @@ const ServiceCard = ({ title, icon, index, activeIndex }) => {
         damping: 30,
         mass: 0.5
       }}
-      className={`absolute w-[200px] h-[260px] md:w-[220px] md:h-[280px] 
+      className={`absolute w-[160px] h-[200px] md:w-[200px] md:h-[260px] 
                   bg-white/5 backdrop-blur-xl rounded-xl border border-white/20 shadow-md 
                   flex flex-col items-center justify-center p-6 text-center`}
     >
@@ -77,9 +77,7 @@ const NewAbout = () => {
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>OVERVIEW</h2>
       </motion.div>
-
       <div className="flex flex-col md:flex-row mt-10 gap-10 md:gap-8">
-        {/* Left Text Section */}
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
           className="text-secondary text-[18px] md:text-[20px] leading-[28px] w-full md:w-2/3 text-center md:text-left"
@@ -90,8 +88,6 @@ const NewAbout = () => {
           create efficient, scalable, and user-friendly solutions that solve
           real-world problems. Let's work together to bring your ideas to life!
         </motion.p>
-
-        {/* Right 3D Circular Carousel */}
         <div 
           className="w-full md:w-1/3 h-[350px] md:h-[400px] flex items-center justify-center mt-20 md:mt-0"
           onTouchStart={handleTouchStart}

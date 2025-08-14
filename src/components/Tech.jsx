@@ -1,103 +1,87 @@
-  import React, { useEffect } from "react";
-  import { SectionWrapper } from "../hoc";
-  import { technologies } from "../constants";
-  import { motion, useMotionValue, useTransform } from "framer-motion";
-  import { textVariant } from "../utils/motion";
-  import { styles } from "../styles";
-
-  const radius = 250;
-
-  const Tech = () => {
-    const angleStep = (2 * Math.PI) / technologies.length;
-
-    const rotateParent = useMotionValue(0);
-    const counterRotate = useTransform(rotateParent, (val) => -val);
-
-    useEffect(() => {
-      let animationFrameId;
-      let angle = 0;
-
-      const update = () => {
-        angle += 0.5; // Rotation speed
-        rotateParent.set(angle);
-        animationFrameId = requestAnimationFrame(update);
-      };
-
+import React, { useEffect, useState, useRef } from "react";
+import { SectionWrapper } from "../hoc";
+import { technologies } from "../constants";
+import { motion } from "framer-motion";
+import { textVariant } from "../utils/motion";
+import { styles } from "../styles";
+import { reactjs } from "../assets";
+const iconRx = 300;
+const iconRy = 200;
+const center = { x: 250, y: 250 };
+const Tech = () => {
+  const [iconAngles, setIconAngles] = useState(
+    Array(technologies.length)
+      .fill(0)
+      .map((_, i) => (i * 2 * Math.PI) / technologies.length)
+  );
+  const [logoRotation, setLogoRotation] = useState(0);
+  useEffect(() => {
+    let animationFrameId;
+    const update = () => {
+      setIconAngles((prev) => prev.map((angle) => angle - 0.01));
+      setLogoRotation((prev) => prev + 1);
       animationFrameId = requestAnimationFrame(update);
+    };
+    animationFrameId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
 
-      return () => cancelAnimationFrame(animationFrameId);
-    }, [rotateParent]);
+  return (
+    <>
+      <motion.div variants={textVariant()}>
+        <h2 className={styles.sectionHeadText}>Technologies</h2>
+      </motion.div>
 
-    return (
-      <>
-        <motion.div variants={textVariant()}>
-          <h2 className={styles.sectionHeadText}>Technologies</h2>
-        </motion.div>
-
-        <div className="w-full h-auto flex flex-col items-center justify-center mt-12">
-
-          {/* Desktop View: Rotating Circle */}
-          <div className="hidden md:flex w-[500px] h-[500px] items-center justify-center relative">
-            <motion.div
-              className="relative w-[500px] h-[500px]"
-              style={{ rotate: rotateParent }}
-            >
-              {technologies.map((tech, index) => {
-                const angle = index * angleStep;
-                const x = radius * Math.cos(angle);
-                const y = radius * Math.sin(angle);
-
-                return (
-                  <div
-                    key={tech.name}
-                    className="absolute"
-                    style={{
-                      left: `${x + 250 - 40}px`,
-                      top: `${y + 250 - 40}px`,
-                      width: "80px",
-                      height: "80px",
-                    }}
-                  >
-                    <motion.div
-                      className="w-full h-full flex flex-col items-center justify-center"
-                      style={{ rotate: counterRotate }}
-                    >
-                      <div className="w-20 h-20 flex items-center justify-center transition-transform duration-300 hover:scale-150">
-                        <img
-                          src={tech.icon}
-                          alt={tech.name}
-                          className="w-16 h-16 object-contain"
-                        />
-                        <span className="text-white text-xs ml-1">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </motion.div>
-                  </div>
-                );
-              })}
-            </motion.div>
-          </div>
-
-          {/* Mobile View: Grid Layout */}
-          <div className="flex md:hidden flex-wrap gap-6 justify-center items-center mt-10 px-4">
-            {technologies.map((tech) => (
-              <div key={tech.name} className="flex flex-col items-center w-20">
+      <div className="w-full h-auto flex flex-col items-center justify-center mt-4">
+        <div className="hidden md:flex w-[500px] h-[500px] items-center justify-center relative">
+          {iconAngles.map((angle, index) => {
+            const x = center.x + iconRx * Math.cos(angle);
+            const y = center.y + iconRy * Math.sin(angle);
+            return (
+              <div
+                key={technologies[index].name}
+                className="absolute flex flex-col items-center justify-center text-white cursor-pointer"
+                style={{
+                  left: `${x - 30}px`,
+                  top: `${y - 30}px`,
+                  width: "60px",
+                  height: "60px",
+                }}
+              >
                 <img
-                  src={tech.icon}
-                  alt={tech.name}
-                  className="w-16 h-16 object-contain"
+                  src={technologies[index].icon}
+                  alt={technologies[index].name}
+                  className="w-20 h-20 object-contain hover:scale-125 transition-transform duration-300"
                 />
-                <span className="text-white text-xs mt-2 text-center">
-                  {tech.name}
-                </span>
+                {technologies[index].name}
               </div>
-            ))}
-          </div>
+            );
+          })}
 
+          <motion.div
+            className="absolute z-10"
+            style={{ rotate: logoRotation }}
+          >
+            <img src={reactjs} alt="React" className="w-20 h-20" />
+          </motion.div>
         </div>
-      </>
-    );
-  };
+        <div className="flex md:hidden flex-wrap gap-6 justify-center items-center mt-10 px-4">
+          {technologies.map((tech) => (
+            <div key={tech.name} className="flex flex-col items-center w-20">
+              <img
+                src={tech.icon}
+                alt={tech.name}
+                className="w-16 h-16 object-contain"
+              />
+              <span className="text-white text-xs mt-2 text-center">
+                {tech.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
-  export default SectionWrapper(Tech, "tech");
+export default SectionWrapper(Tech, "tech");

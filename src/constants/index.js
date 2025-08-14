@@ -79,15 +79,11 @@ const technologies = [
     icon: typescript,
   },
   {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
     name: "Tailwind",
     icon: tailwind,
   },
   {
-    name: "Node JS",
+    name: "NodeJS",
     icon: nodejs,
   },
   {
@@ -104,7 +100,7 @@ const experiences = [
   {
     title: "Full Stack Developer Intern",
     company_name: "RemoteState",
-    icon: remotestate, // Add your company logo import
+    icon: remotestate, 
     iconBg: "#383E56",
     date: "Feb 2025 - June 2025",
     points: [
@@ -135,7 +131,7 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: store, // Add your project image import
+    image: store, 
     source_code_link: "https://github.com/RSrishigupta/StoreX",
   },
   {

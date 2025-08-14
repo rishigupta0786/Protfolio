@@ -1,78 +1,71 @@
 import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
-
-import "react-vertical-timeline-component/style.min.css";
-
+import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
 import { experiences } from "../constants";
-import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
 const ExperienceCard = ({ experience }) => {
   return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
-      icon={
-        <div className="flex justify-center items-center w-full h-full">
-          <img src={experience.icon} alt={experience.company_name} />
-        </div>
-      }
+    <motion.div
+      whileHover={{ scale: 1.05, boxShadow: "0px 0px 25px rgba(0,255,255,0.6)" }}
+      className="relative w-full sm:w-[320px] p-[2px] rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500"
     >
-      <div>
-        <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
-        <p
-          className="text-secondary text-[16px] font-semibold"
-          style={{ margin: 0 }}
+      <div className="bg-black/60 backdrop-blur-md rounded-2xl p-5 h-full flex flex-col items-center text-center border border-cyan-400/20">
+        {/* Rotating Icon */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-tr from-cyan-500 to-purple-500 shadow-lg shadow-cyan-500/50 mb-4"
         >
-          {experience.company_name}
-        </p>
-      </div>
+          <img
+            src={experience.icon}
+            alt={experience.company_name}
+            className="w-12 h-12 object-contain"
+          />
+        </motion.div>
 
-      <ul className="mt-5 list-disc ml-5 space-y-2">
-        {experience.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className="text-white-100 text-[14px] pl-1 tracking-wider"
-          >
-            {point}
-          </li>
-        ))}
-      </ul>
-    </VerticalTimelineElement>
+        {/* Title & Company */}
+        <h3 className="text-white text-lg font-bold">{experience.title}</h3>
+        <p className="text-cyan-300 text-sm">{experience.company_name}</p>
+        <p className="text-gray-400 text-xs">{experience.date}</p>
+
+        {/* Points */}
+        <ul className="mt-4 space-y-2 text-gray-300 text-sm list-disc list-inside text-left w-full">
+          {experience.points.map((point, index) => (
+            <li key={index} className="leading-snug">
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
   );
 };
 
 const Experience = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
-          What I have done so far
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
-        </h2>
+      <motion.div variants={textVariant()} className="mb-10 text-center">
+        <p className={`${styles.sectionSubText}`}>What I have done so far</p>
+        <h2 className={`${styles.sectionHeadText}`}>Work Experience</h2>
       </motion.div>
 
-      <div className="mt-20 flex flex-col">
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
+      {/* Timeline container */}
+      <div className="relative flex flex-col sm:flex-row gap-8 sm:gap-12 items-center justify-center">
+        {/* Animated line */}
+        <motion.div
+          animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          className="absolute sm:h-[4px] sm:w-full h-full w-[4px] bg-gradient-to-r sm:from-cyan-500 sm:via-blue-500 sm:to-purple-500 from-cyan-500 via-blue-500 to-purple-500 bg-[length:200%_200%] rounded-full"
+        />
+
+        {/* Experience Cards */}
+        <div className="flex flex-col sm:flex-row gap-8 relative z-10">
+          {experiences.map((exp, idx) => (
+            <ExperienceCard key={idx} experience={exp} />
           ))}
-        </VerticalTimeline>
+        </div>
       </div>
     </>
   );
