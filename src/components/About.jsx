@@ -30,7 +30,7 @@ const ServiceCard = ({ title, icon, index, activeIndex }) => {
       className={`absolute w-[160px] h-[200px] md:w-[200px] md:h-[260px] 
                   bg-white/5 backdrop-blur-xl rounded-xl border border-white/20
                   flex flex-col items-center justify-center p-6 text-center
-                  ${index === activeIndex ? 'shadow-[0_0_25px_#0ff] border-cyan-400' : ''}`}
+                  ${index === activeIndex ? 'shadow-[0_0_25px_#0ff] border-cyan-700' : ''}`}
     >
       <img src={icon} alt={title} className="w-16 h-16 object-contain mb-4" />
       <h3 className="text-white text-lg font-semibold">{title}</h3>

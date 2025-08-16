@@ -17,7 +17,7 @@ const Hero = () => {
   };
   return (
     <section className="relative w-full h-screen overflow-hidden text-white bg-transparent">
-      <div className="relative z-10 max-w-7xl mt-12 mx-auto h-full flex flex-col md:flex-row items-center justify-center px-6 gap-10">
+      <div className="relative z-10 max-w-7xl mt-10 mx-auto h-full flex flex-col md:flex-row items-center justify-center px-6 gap-6">
         {/* Text Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +25,7 @@ const Hero = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="w-full md:w-1/2 text-center md:text-left"
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+          <h1 className="text-3xl md:text-6xl font-extrabold leading-tight">
             Hey, I'm{" "}
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
               Rishi Gupta
@@ -37,7 +37,7 @@ const Hero = () => {
             <span className="font-semibold">high-performance</span> web
             solutions.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+          <div className="mt-4 flex flex-wrap gap-4 justify-center md:justify-start">
             <button
               onClick={handleDownloadCV}
               className="px-6 py-3 rounded-full bg-gradient-to-r from-gray-950 to-gray-700 text-white hover:scale-105 transition-transform font-medium hover:shadow-[0_0_50px_rgba(255,255,255,0.6)]"
@@ -85,7 +85,7 @@ const Hero = () => {
       {/* Custom Gradient Shadow */}
       <style jsx="true">{`
         .hover\\:shadow-gradient:hover {
-          box-shadow: 0 0 25px rgba(34, 211, 238, 0.6),
+          box-shadow: 0 0 15px rgba(34, 211, 238, 0.6),
             /* cyan-400 with 60% opacity */ 0 0 50px rgba(34, 211, 238, 0.8),
             /* cyan-400 with 80% opacity */ 0 0 75px rgba(34, 211, 238, 0.4); /* cyan-400 with 40% opacity */
         }
