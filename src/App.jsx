@@ -6,21 +6,18 @@ import {
   Hero,
   Navbar,
   Tech,
-  Works,
+  Projects,
   StarsCanvas,
 } from "./components";
 import Resume from "./components/Resume";
-
 const App = () => {
   return (
     <BrowserRouter>
-      {/* StarsCanvas as background for entire app */}
       <div className="relative z-0 bg-primary">
         <StarsCanvas />
         <div className="relative z-10">
           <Navbar />
           <Routes>
-            {/* Homepage route */}
             <Route
               path="/"
               element={
@@ -29,13 +26,11 @@ const App = () => {
                   <About />
                   <Experience />
                   <Tech />
-                  <Works />
+                  <Projects />
                   <Contact />
                 </>
               }
             />
-
-            {/* Resume page route */}
             <Route path="/resume" element={<Resume />} />
           </Routes>
         </div>

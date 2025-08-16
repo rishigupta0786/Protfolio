@@ -9,18 +9,15 @@ const Hero = () => {
   const handleDownloadCV = () => {
     navigate("/resume");
   };
-
   const handleContactScroll = () => {
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-
   return (
     <section className="relative w-full h-screen overflow-hidden text-white bg-transparent">
-      <div className="relative z-10 max-w-7xl mt-10 mx-auto h-full flex flex-col md:flex-row items-center justify-center px-6 gap-10">
-        
+      <div className="relative z-10 max-w-7xl mt-12 mx-auto h-full flex flex-col md:flex-row items-center justify-center px-6 gap-10">
         {/* Text Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,13 +40,13 @@ const Hero = () => {
           <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
             <button
               onClick={handleDownloadCV}
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-black to-gray-800 text-white hover:scale-105 transition-transform font-medium"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-gray-950 to-gray-700 text-white hover:scale-105 transition-transform font-medium hover:shadow-[0_0_50px_rgba(255,255,255,0.6)]"
             >
               Download CV
             </button>
             <button
               onClick={handleContactScroll}
-              className="px-6 py-3 rounded-full border border-white/20 hover:border-white/40 hover:scale-105 transition-transform font-medium"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-gray-700 to-gray-950 text-white hover:scale-105 transition-transform font-medium hover:shadow-[0_0_50px_rgba(255,255,255,0.6)]"
             >
               Contact Me
             </button>
@@ -61,8 +58,9 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="relative w-96 h-96 rounded-3xl overflow-hidden border border-white/10 shadow-xl 
-                     transition-all duration-500 ease-in-out group hover:shadow-gradient"
+          className="relative w-full max-w-xs sm:max-w-sm md:w-96 h-80 sm:h-96 
+             rounded-3xl overflow-hidden border border-white/10 shadow-xl 
+             transition-all duration-500 ease-in-out group hover:shadow-gradient sm:px-0"
         >
           <img
             src={avatar}
@@ -87,9 +85,9 @@ const Hero = () => {
       {/* Custom Gradient Shadow */}
       <style jsx="true">{`
         .hover\\:shadow-gradient:hover {
-          box-shadow: 0 0 25px rgba(18, 143, 130, 0.6), 
-                      0 0 50px rgba(10, 69, 137, 1), 
-                      0 0 75px rgba(0, 255, 255, 0.4);
+          box-shadow: 0 0 25px rgba(34, 211, 238, 0.6),
+            /* cyan-400 with 60% opacity */ 0 0 50px rgba(34, 211, 238, 0.8),
+            /* cyan-400 with 80% opacity */ 0 0 75px rgba(34, 211, 238, 0.4); /* cyan-400 with 40% opacity */
         }
       `}</style>
     </section>

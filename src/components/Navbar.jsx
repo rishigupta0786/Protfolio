@@ -26,14 +26,12 @@ const Navbar = () => {
 
     if (nav.title === "Resume") {
       navigate("/resume");
-    }else if (nav.title === "Home") {
+    } else if (nav.title === "Home") {
       navigate("/");
       window.scrollTo(0, 0);
     } else {
-      // For section links
       if (window.location.pathname !== "/") {
         navigate("/");
-        // Small delay to ensure the homepage loads before scrolling
         setTimeout(() => {
           const element = document.getElementById(nav.id);
           if (element) {
@@ -56,6 +54,7 @@ const Navbar = () => {
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+        {/* Logo */}
         <Link
           to="/"
           className="flex items-center gap-2"
@@ -70,7 +69,7 @@ const Navbar = () => {
           </p>
         </Link>
 
-        {/* Desktop menu */}
+        {/* Desktop Menu */}
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {navLinks.map((nav) => (
             <li
@@ -80,16 +79,12 @@ const Navbar = () => {
               } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => handleNavClick(nav)}
             >
-              {nav.title === "Resume" ? (
-                <span>{nav.title}</span>
-              ) : (
-                <span>{nav.title}</span>
-              )}
+              {nav.title}
             </li>
           ))}
         </ul>
 
-        {/* Mobile menu */}
+        {/* Mobile Hamburger */}
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
             src={toggle ? close : menu}
@@ -98,18 +93,30 @@ const Navbar = () => {
             onClick={() => setToggle(!toggle)}
           />
 
+          {/* Side Panel */}
           <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            className={`fixed top-0 right-0 h-full w-64 bg-primary shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+              toggle ? "translate-x-0" : "translate-x-full"
+            }`}
           >
-            <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
+            {/* Close button */}
+            <div className="flex justify-end p-6">
+              <img
+                src={close}
+                alt="close"
+                className="w-[28px] h-[28px] cursor-pointer"
+                onClick={() => setToggle(false)}
+              />
+            </div>
+
+            {/* Links */}
+            <ul className="list-none flex flex-col gap-6 p-6">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                  className={`font-poppins font-medium text-[18px] cursor-pointer ${
                     active === nav.title ? "text-white" : "text-secondary"
-                  }`}
+                  } hover:text-white`}
                   onClick={() => handleNavClick(nav)}
                 >
                   {nav.title}

@@ -14,11 +14,10 @@ import {
   figma,
   store,
   jjk,
-  snapit, 
+  snapit,
   nowted,
   remotestate,
 } from "../assets";
-// import remotestate from "../assets/company/remotestate.png";
 export const navLinks = [
   {
     id: "home",
@@ -29,8 +28,16 @@ export const navLinks = [
     title: "About",
   },
   {
-    id: "work",
-    title: "Work",
+    id: "exp",
+    title: "Experience",
+  },
+  {
+    id: "tech",
+    title: "Technology",
+  },
+  {
+    id: "projects",
+    title: "Projects",
   },
   {
     id: "contact",
@@ -39,7 +46,7 @@ export const navLinks = [
   {
     id: "resume",
     title: "Resume",
-  }
+  },
 ];
 
 const services = [
@@ -100,7 +107,7 @@ const experiences = [
   {
     title: "Full Stack Developer Intern",
     company_name: "RemoteState",
-    icon: remotestate, 
+    icon: remotestate,
     iconBg: "#383E56",
     date: "Feb 2025 - June 2025",
     points: [
@@ -131,7 +138,7 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: store, 
+    image: store,
     source_code_link: "https://github.com/RSrishigupta/StoreX",
   },
   {
@@ -154,7 +161,8 @@ const projects = [
     ],
     image: nowted, // Add your project image import
     source_code_link: "https://github.com/RSrishigupta/nowted_Nextjs",
-    live_demo_link: "https://nowted-nextjs-i0tgx69jb-rishi-guptas-projects-f08aefc5.vercel.app/",
+    live_demo_link:
+      "https://nowted-nextjs-i0tgx69jb-rishi-guptas-projects-f08aefc5.vercel.app/",
   },
   {
     name: "Jujutsu Kaisen Explorer",
@@ -183,23 +191,23 @@ const projects = [
     description:
       "Stylish animated image gallery with smooth transitions, responsive layout, and interactive UI elements for enhanced visual experience.",
     tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "framer-motion",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ],
-      image: snapit, // Add your project image import
-      source_code_link: "https://github.com/rishigupta0786/SnapIt",
-      live_demo_link: "https://rishigupta0786.github.io/SnapIt/",
-    },
-  ];
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "framer-motion",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: snapit, // Add your project image import
+    source_code_link: "https://github.com/rishigupta0786/SnapIt",
+    live_demo_link: "https://rishigupta0786.github.io/SnapIt/",
+  },
+];
 
 export { services, technologies, experiences, projects };

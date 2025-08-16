@@ -14,11 +14,18 @@ const Tech = () => {
       .fill(0)
       .map((_, i) => (i * 2 * Math.PI) / technologies.length)
   );
+  const [mobileIconAngles, setMobileIconAngles] = useState(
+    Array(technologies.length)
+      .fill(0)
+      .map((_, i) => (i * 2 * Math.PI) / technologies.length)
+  );
   const [logoRotation, setLogoRotation] = useState(0);
+
   useEffect(() => {
     let animationFrameId;
     const update = () => {
       setIconAngles((prev) => prev.map((angle) => angle - 0.01));
+      setMobileIconAngles((prev) => prev.map((angle) => angle - 0.02)); // Faster rotation for mobile
       setLogoRotation((prev) => prev + 1);
       animationFrameId = requestAnimationFrame(update);
     };
@@ -28,8 +35,11 @@ const Tech = () => {
 
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant()} className="mb-10 text-center">
         <h2 className={styles.sectionHeadText}>Technologies</h2>
+        <p className="text-gray-300  ">
+          Tools & frameworks I love working with
+        </p>
       </motion.div>
 
       <div className="w-full h-auto flex flex-col items-center justify-center mt-4">
@@ -59,25 +69,46 @@ const Tech = () => {
           })}
 
           <motion.div
-            className="absolute z-10"
+            className="absolute"
             style={{ rotate: logoRotation }}
           >
             <img src={reactjs} alt="React" className="w-20 h-20" />
           </motion.div>
         </div>
-        <div className="flex md:hidden flex-wrap gap-6 justify-center items-center mt-10 px-4">
-          {technologies.map((tech) => (
-            <div key={tech.name} className="flex flex-col items-center w-20">
-              <img
-                src={tech.icon}
-                alt={tech.name}
-                className="w-16 h-16 object-contain"
-              />
-              <span className="text-white text-xs mt-2 text-center">
-                {tech.name}
-              </span>
-            </div>
-          ))}
+
+        {/* Mobile View with Rotation */}
+        <div className="flex md:hidden w-[300px] h-[300px] items-center justify-center relative">
+          {mobileIconAngles.map((angle, index) => {
+            const mobileRadius = 120;
+            const x = 150 + mobileRadius * Math.cos(angle);
+            const y = 150 + mobileRadius * Math.sin(angle);
+            return (
+              <motion.div
+                key={technologies[index].name}
+                className="absolute flex flex-col items-center justify-center text-white cursor-pointer"
+                style={{
+                  left: `${x - 25}px`,
+                  top: `${y - 25}px`,
+                  width: "40px",
+                  height: "40px",
+                }}
+                whileHover={{ scale: 1.2 }}
+              >
+                <img
+                  src={technologies[index].icon}
+                  alt={technologies[index].name}
+                  className="w-12 h-12 object-contain"
+                /><p className="text-xs">{technologies[index].name}</p>
+              </motion.div>
+            );
+          })}
+
+          <motion.div
+            className="absolute z-10"
+            style={{ rotate: logoRotation }}
+          >
+            <img src={reactjs} alt="React" className="w-16 h-16" />
+          </motion.div>
         </div>
       </div>
     </>
