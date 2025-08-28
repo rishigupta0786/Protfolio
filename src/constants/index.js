@@ -162,7 +162,7 @@ const projects = [
     image: nowted, // Add your project image import
     source_code_link: "https://github.com/RSrishigupta/nowted_Nextjs",
     live_demo_link:
-      "https://nowted-nextjs-i0tgx69jb-rishi-guptas-projects-f08aefc5.vercel.app/",
+      "https://nowted-react.web.app/",
   },
   {
     name: "Jujutsu Kaisen Explorer",

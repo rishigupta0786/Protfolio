@@ -1,12 +1,11 @@
 import React from "react";
-import backgroundImage from "../assets/herobg.png";
-import resumePage1 from "../assets/resume/Resume-1.png";
-import resumePage2 from "../assets/resume/Resume-2.png";
+// import backgroundImage from "../assets/herobg.png";
+import resumePage1 from "../assets/resume.jpg";
 
 const Resume = () => {
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/Resume.pdf";
+    link.href = "/resume.pdf";
     link.download = "Rishi-Gupta-Resume.pdf";
     document.body.appendChild(link);
     link.click();
@@ -69,16 +68,6 @@ const Resume = () => {
           <img
             src={resumePage1}
             alt="Resume Page 1"
-            className="mx-auto"
-            style={{
-              width: "100%",
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
-          <img
-            src={resumePage2}
-            alt="Resume Page 2"
             className="mx-auto"
             style={{
               width: "100%",
