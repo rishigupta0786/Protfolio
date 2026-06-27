@@ -200,14 +200,25 @@ const projects = [
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "css",
         color: "pink-text-gradient",
       },
     ],
     image: snapit, // Add your project image import
-    source_code_link: "https://github.com/rishigupta0786/SnapIt",
-    live_demo_link: "https://rishigupta0786.github.io/SnapIt/",
+    source_code_link: "https://github.com/rishigupta0786/Snapit",
+    live_demo_link: "https://snapit-beta.vercel.app/",
   },
 ];
+
+export const heroContent = {
+  name: "Rishi Gupta",
+  description:
+    "A Full-Stack Developer passionate about crafting scalable & high-performance web solutions.",
+  cta1: "Download CV",
+  cta2: "Contact Me",
+};
+
+export const projectsIntro =
+  "Following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described with links to code repositories and live demos. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.";
 
 export { services, technologies, experiences, projects };

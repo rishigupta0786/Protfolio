@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   About,
@@ -10,11 +11,14 @@ import {
   StarsCanvas,
 } from "./components";
 import Resume from "./components/Resume";
+import Loader from "./components/Loader";
 const App = () => {
   return (
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
-        <StarsCanvas />
+        <Suspense fallback={<Loader />}>
+          <StarsCanvas />
+        </Suspense>
         <div className="relative z-10">
           <Navbar />
           <Routes>

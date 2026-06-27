@@ -2,9 +2,11 @@ import React from "react";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
-import { projects } from "../constants";
+import { projects, projectsIntro } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const ProjectCard = ({
@@ -27,9 +29,10 @@ const ProjectCard = ({
                    transition-all duration-300 hover:shadow-[0_0_20px_#00f0ff,0_0_40px_#00f0ff]"
       >
         <div className="relative w-full h-[230px] rounded-2xl overflow-hidden group">
-          <img
+          <LazyLoadImage
             src={image}
             alt="project_image"
+            effect="blur"
             className="w-full h-full object-cover rounded-2xl"
           />
 
@@ -44,6 +47,7 @@ const ProjectCard = ({
               className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-800 to-gray-600 
                          flex justify-center items-center hover:scale-110 transition"
               title="View Source Code"
+              aria-label="View Source Code"
             >
               <FiGithub className="text-white w-5 h-5" />
             </button>
@@ -55,6 +59,7 @@ const ProjectCard = ({
                 className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 
                            flex justify-center items-center hover:scale-110 transition"
                 title="View Live Demo"
+                aria-label="View Live Demo"
               >
                 <FiExternalLink className="text-white w-5 h-5" />
               </button>
@@ -88,11 +93,7 @@ const Projects = () => {
       <motion.div variants={textVariant()} className="text-center">
         <h2 className={`${styles.sectionHeadText}`}>Projects</h2>
         <div className="w-full sm:px-20 text-gray-300 mt-4 text-lg">
-          Following projects showcase my skills and experience through
-          real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos. It reflects my ability to
-          solve complex problems, work with different technologies, and manage
-          projects effectively.
+          {projectsIntro}
         </div>
       </motion.div>
       <div className="mt-10 flex flex-wrap gap-7">

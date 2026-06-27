@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.hover-shadow-gradient:hover {
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.6),
+    /* cyan-400 with 60% opacity */ 0 0 50px rgba(34, 211, 238, 0.8),
+    /* cyan-400 with 80% opacity */ 0 0 75px rgba(34, 211, 238, 0.4); /* cyan-400 with 40% opacity */
+}
+
 * {
   margin: 0;
   padding: 0;
